@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Smith Care Foundation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    body::before {
+      content: '';
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      background: rgba(239,68,68,0.15);
+      border-radius: 50%;
+      filter: blur(140px);
+      top: -150px;
+      left: -120px;
+      z-index: -1;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      width: 450px;
+      height: 450px;
+      background: rgba(59,130,246,0.08);
+      border-radius: 50%;
+      filter: blur(140px);
+      bottom: -120px;
+      right: -120px;
+      z-index: -1;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #050608;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(18px);
+      background: rgba(0,0,0,0.4);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo img {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      width: 28px;
+      height: 2px;
+      background: white;
+      transition: 0.4s;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: rgba(5,6,8,0.95);
+      backdrop-filter: blur(30px);
+      padding: 120px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      transition: 0.5s ease;
+      z-index: 999;
+      border-left: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+
+    .mobile-menu a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 18px;
+      transition: 0.3s;
+    }
+
+    .mobile-menu a:hover {
+      color: white;
+      transform: translateX(8px);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(239,68,68,0.12), transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+    }
+
+    .hero {
+      padding: 140px 8% 80px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      letter-spacing: -2px;
+    }
+
+    .hero p {
+      margin-top: 20px;
+      color: rgba(255,255,255,0.6);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+    }
+
+    .hero-image-showcase {
+      margin-top: 70px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 30px;
+      align-items: stretch;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-main-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 36px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      padding: 18px;
+      backdrop-filter: blur(20px);
+      transition: 0.4s ease;
+    }
+
+    .hero-main-image:hover {
+      transform: translateY(-6px);
+      border-color: rgba(239,68,68,0.2);
+    }
+
+    .hero-main-image img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 24px;
+      opacity: 0.88;
+    }
+
+    .hero-overlay-card {
+      position: absolute;
+      bottom: 35px;
+      left: 35px;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 20px 24px;
+      text-align: left;
+    }
+
+    .hero-overlay-card span {
+      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .hero-overlay-card h3 {
+      margin-top: 10px;
+      font-size: 28px;
+    }
+
+    .hero-side-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .mini-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: 28px;
+      text-align: left;
+      backdrop-filter: blur(20px);
+      transition: 0.4s ease;
+    }
+
+    .mini-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(239,68,68,0.2);
+    }
+
+    .mini-card i {
+      font-size: 26px;
+      color: #ef4444;
+      margin-bottom: 18px;
+    }
+
+    .mini-card h4 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .mini-card p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.58);
+      line-height: 1.8;
+      margin-top: 0;
+    }
+
+    .highlight {
+      color: #ef4444;
+    }
+
+    /* SECTION */
+    .section {
+      padding: 100px 8%;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 30px;
+      padding: 30px;
+      backdrop-filter: blur(20px);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 20px;
+      height: 500px;
+      object-fit: cover;
+    }
+
+    h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: rgba(255,255,255,0.6);
+      line-height: 1.9;
+    }
+
+    /* VALUES */
+    .values {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .value-box {
+      padding: 30px;
+      border-radius: 25px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.3s;
+    }
+
+    .value-box:hover {
+      transform: translateY(-8px);
+      border-color: rgba(239,68,68,0.3);
+      background: linear-gradient(180deg, rgba(239,68,68,0.08), rgba(255,255,255,0.03));
+      box-shadow: 0 20px 60px rgba(239,68,68,0.08);
+    }
+
+    .count-number {
+      font-size: 56px;
+      font-weight: 700;
+      background: linear-gradient(90deg,#ef4444,#ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+
+    .fade-section {
+      opacity: 0;
+      transform: translateY(70px);
+      transition: 1s ease;
+    }
+
+    .fade-section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 60px 8%;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* RESPONSIVE */
+    .social-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-5px);
+      border-color: rgba(239,68,68,0.3);
+      background: rgba(239,68,68,0.08);
+    }
+
+    @media(max-width: 900px){
+      .hero-image-showcase {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-main-image img {
+        height: 300px;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .values {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <nav>
+    <div class="logo">
+      <img src="images/logo.png" alt="Logo">
+      <div>
+        <div style="font-size:14px;letter-spacing:4px;font-weight:600;">SMITH CARE</div>
+        <div style="font-size:11px;letter-spacing:3px;color:rgba(255,255,255,0.45);margin-top:4px;">FOUNDATION</div>
+      </div>
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div style="display:inline-block;padding:10px 20px;border-radius:999px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.15);color:#fca5a5;letter-spacing:3px;font-size:12px;text-transform:uppercase;margin-bottom:30px;">
+      Humanity Our Priority
+    </div>
+    <h1>About <span class="highlight">Smith Care Foundation</span></h1>
+    <p>
+      We are a humanitarian organization dedicated to transforming lives through community support, leadership, and sustainable development programs.
+    </p>
+
+    <div class="hero-image-showcase fade-section">
+      <div class="hero-main-image">
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80" alt="Foundation Community Image">
+
+        <div class="hero-overlay-card">
+          <span>Community Focus</span>
+          <h3>Changing Lives Through Care</h3>
+        </div>
+      </div>
+
+      <div class="hero-side-stack">
+        <div class="mini-card">
+          <i class="fas fa-hand-holding-heart"></i>
+          <h4>Community Driven</h4>
+          <p>Every initiative is designed to uplift and strengthen communities through real support.</p>
+        </div>
+
+        <div class="mini-card">
+          <i class="fas fa-users"></i>
+          <h4>People First</h4>
+          <p>Our work focuses on families, youth, healthcare, and social empowerment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDATION INTRODUCTION -->
+  <section class="section">
+    <div style="max-width:1000px;margin:auto;text-align:center;">
+      <h2>Who We Are</h2>
+      <p style="margin-top:25px;font-size:18px;line-height:2;max-width:900px;margin-left:auto;margin-right:auto;">
+        Smith Care Foundation is a purpose-driven humanitarian organization dedicated to uplifting communities through meaningful support systems.
+        We focus on creating sustainable change by helping vulnerable families, empowering youth, supporting education, and improving healthcare access.
+      </p>
+
+      <p style="margin-top:25px;font-size:18px;line-height:2;max-width:900px;margin-left:auto;margin-right:auto;">
+        Built on compassion and leadership, the foundation exists to bridge social gaps and provide opportunities where hope is needed most.
+        Every project is guided by impact, service, and long-term community transformation.
+      </p>
+    </div>
+  </section>
+
+  <!-- FOUNDATION STATS -->
+  <section class="section fade-section">
+    <div style="text-align:center;margin-bottom:50px;">
+      <h2>Our Growing Impact</h2>
+      <p style="max-width:700px;margin:auto;">Every number reflects a real story, a transformed life, and a stronger community built through service and compassion.</p>
+    </div>
+
+    <div class="values">
+      <div class="value-box">
+        <div class="count-number" data-target="10000">0</div>
+        <p>Lives Positively Impacted</p>
+      </div>
+
+      <div class="value-box">
+        <div class="count-number" data-target="35">0</div>
+        <p>Community Programs</p>
+      </div>
+
+      <div class="value-box">
+        <div class="count-number" data-target="8">0</div>
+        <p>Years of Leadership & Service</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="section fade-section">
+    <div class="grid">
+      <div>
+        <h2>Our Story</h2>
+        <p>
+          Smith Care Foundation was built with one purpose — to uplift communities and create meaningful change through compassion and leadership.
+          We believe in action, not words.
+        </p>
+        <br>
+        <p>
+          From small beginnings to growing impact, our journey is driven by service, humanity, and dedication.
+        </p>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80" alt="Foundation Image">
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="section fade-section">
+    <div class="grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=1200&q=80" alt="Leadership">
+      </div>
+
+      <div>
+        <h2>Our Mission</h2>
+        <p>
+          To empower communities through sustainable programs in education, healthcare, and social development.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXTRA PREMIUM SECTION -->
+  <section class="section fade-section">
+    <div class="grid">
+      <div>
+        <h2>Leadership Philosophy</h2>
+        <p>
+          Smith Care Foundation is guided by leadership rooted in compassion, accountability, and service.
+          Every initiative begins with understanding communities and creating meaningful change that lasts.
+        </p>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=1200&q=80" alt="Leadership Vision">
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section fade-section">
+    <div style="text-align:center;margin-bottom:30px;">
+      <h2>Core Values</h2>
+      <p style="max-width:700px;margin:auto;">The values that guide every decision, every initiative, and every community we serve.</p>
+    </div>
+
+    <div class="values">
+      <div class="value-box">
+        <h3>Compassion</h3>
+        <p>We care deeply about every life we impact.</p>
+      </div>
+
+      <div class="value-box">
+        <h3>Integrity</h3>
+        <p>We act with honesty and transparency.</p>
+      </div>
+
+      <div class="value-box">
+        <h3>Impact</h3>
+        <p>We focus on real, measurable change.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:50px;max-width:1400px;margin:auto;text-align:left;">
+
+      <div>
+        <div class="logo">
+      <img src="images/logo.png" alt="Logo">
+      <div>
+        <div style="font-size:14px;letter-spacing:4px;font-weight:600;">SMITH CARE</div>
+        <div style="font-size:11px;letter-spacing:3px;color:rgba(255,255,255,0.45);margin-top:4px;">FOUNDATION</div>
+      </div>
+    </div>
+
+        <p style="margin-top:25px;max-width:420px;line-height:1.9;">
+          Humanity first. Building stronger communities through compassion, outreach, and leadership.
+        </p>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom:20px;">Navigation</h3>
+        <p><a href="index.html">Home</a></p>
+        <p><a href="about.html">About</a></p>
+        <p><a href="contact.html">Contact</a></p>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom:20px;">Follow Us</h3>
+
+        <div style="display:flex;gap:14px;margin-top:15px;">
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:70px;border-top:1px solid rgba(255,255,255,0.08);padding-top:30px;text-align:center;">
+      © 2027 Smith Care Foundation. All Rights Reserved.
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menuToggle')
+    const mobileMenu = document.getElementById('mobileMenu')
+
+    toggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active')
+    })
+
+    // Fade In Animation
+    const fadeSections = document.querySelectorAll('.fade-section')
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('show')
+        }
+      })
+    }, { threshold: 0.2 })
+
+    fadeSections.forEach(section => observer.observe(section))
+
+    // Counter Animation
+    const counters = document.querySelectorAll('.count-number')
+
+    counters.forEach(counter => {
+      const updateCounter = () => {
+        const target = +counter.getAttribute('data-target')
+        const current = +counter.innerText
+
+        const increment = target / 120
+
+        if(current < target) {
+          counter.innerText = `${Math.ceil(current + increment)}`
+          setTimeout(updateCounter, 20)
+        } else {
+          counter.innerText = target >= 1000 ? (target / 1000).toFixed(0) + 'K+' : target + '+'
+        }
+      }
+
+      updateCounter()
+    })
+  </script>
+
+</body>
+</html>
